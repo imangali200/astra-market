@@ -1,0 +1,613 @@
+{
+  "newproduct": [
+    {
+      "id": 1,
+      "name": "Серьги 4047808331291 золото",
+      "code": "4047808331291",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Новая цепочка из желтого золота с гладкой текстурой.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "8,250.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+      
+    },
+    {
+      "id": 2,
+      "name": "Серьги 4047808331292 золото",
+      "code": "4047808331292",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Цепочка с плетением якорь, прочная и изысканная.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "8,999.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Серьги 4047808331293 золото",
+      "code": "4047808331293",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Тонкая серебряная цепочка, отлично подходит к кулону.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "3,990.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Серьги 4047808331294 золото",
+      "code": "4047808331294",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Цепочка с элементами розового золота, современный стиль.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "5,500.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Серьги 4047808331295 золото",
+      "code": "4047808331295",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Двойная цепочка для женщин, прочная застежка.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "6,150.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Серьги 4047808331296 золото",
+      "code": "4047808331296",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Цепочка с кристаллами Swarovski, блестящий эффект.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "7,100.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Серьги 4047808331297 золото",
+      "code": "4047808331297",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Минималистичная цепочка с круглым кулоном.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "4,950.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Серьги 4047808331298 золото",
+      "code": "4047808331298",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Цепочка с V-образным изгибом, стильный и необычный дизайн.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "5,990.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Серьги 4047808331299 золото",
+      "code": "4047808331299",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Цепочка из розового золота с изогнутым сердцем.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "6,600.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Серьги 4047808331300 золото",
+      "code": "4047808331300",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Цепочка с мелким плетением, легкая и удобная.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "4,100.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    }
+  ],
+  "popular": [
+    {
+      "id": 11,
+      "name": "Серьги 4047808331301 золото",
+      "code": "4047808331301",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Обручальное кольцо из классического желтого золота.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "6,250.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Серьги 4047808331302 золото",
+      "code": "4047808331302",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Элегантное кольцо с камнем, идеальный выбор для подарка.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "6,900.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Серьги 4047808331303 золото",
+      "code": "4047808331303",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Тонкое кольцо с гравировкой и блестящей отделкой.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "4,150.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Серьги 4047808331304 золото",
+      "code": "4047808331304",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Кольцо с двойным ободком и центральным кристаллом.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "5,400.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Серьги 4047808331305 золото",
+      "code": "4047808331305",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Белое кольцо с сердцевидной вставкой и блестками.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "4,050.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Серьги 4047808331306 золото",
+      "code": "4047808331306",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Кольцо с узором и глянцевой золотой поверхностью.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "4,999.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Серьги 4047808331307 золото",
+      "code": "4047808331307",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Кольцо с элементами керамики и камнями Swarovski.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "6,200.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Серьги 4047808331308 золото",
+      "code": "4047808331308",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Кольцо с эффектом распыления и круглыми вставками.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "5,600.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Серьги 4047808331309 золото",
+      "code": "4047808331309",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Кольцо с цветочным мотивом и резными деталями.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "5,550.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Серьги 4047808331310 золото",
+      "code": "4047808331310",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Ультратонкое кольцо с зеркальной полировкой.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; -вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "3,100.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    }
+  ],
+  "discounts": [
+    {
+      "id": 21,
+      "name": "Серьги 4047808331311 золото",
+      "code": "4047808331311",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Скидка 20%: Цепочка из серебра с узором.",
+      "description2": "- значение веса оттенка на фото и характеристики являются примерными усредненными и могут отличаться от фактических; - красное золото; - для женщин; - 585 проба; - вставка: бриллиант - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "3,200.00 ₸",
+      "oldPrice": "4,000.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },{
+      "id": 22,
+      "name": "Серьги 4047808331312 золото",
+      "code": "4047808331312",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Скидка 30%: Кольцо с камнем Swarovski.",
+      "description2": "- Вес и характеристики примерные, могут отличаться; - красное золото; - 585 проба; - вставка: бриллиант; - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "4,830.00 ₸",
+      "oldPrice": "6,900.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Серьги 4047808331313 золото",
+      "code": "4047808331313",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Скидка 25%: Элегантное кольцо с матовой отделкой.",
+      "description2": "- Вес и характеристики примерные, могут отличаться; - красное золото; - 585 проба; - вставка: бриллиант; - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "5,250.00 ₸",
+      "oldPrice": "7,000.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Серьги 4047808331314 золото",
+      "code": "4047808331314",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Скидка 15%: Кольцо с тонкой гравировкой.",
+      "description2": "- Вес и характеристики примерные, могут отличаться; - красное золото; - 585 проба; - вставка: бриллиант; - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "4,250.00 ₸",
+      "oldPrice": "5,000.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 25,
+      "name": "Серьги 4047808331315 золото",
+      "code": "4047808331315",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Скидка 10%: Классическое кольцо с круглым бриллиантом.",
+      "description2": "- Вес и характеристики примерные, могут отличаться; - красное золото; - 585 проба; - вставка: бриллиант; - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "5,850.00 ₸",
+      "oldPrice": "6,500.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 26,
+      "name": "Серьги 4047808331316 золото",
+      "code": "4047808331316",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Современное кольцо с объемным дизайном.",
+      "description2": "- Вес и характеристики примерные, могут отличаться; - красное золото; - 585 проба; - вставка: бриллиант; - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "6,150.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 27,
+      "name": "Серьги 4047808331317 золото",
+      "code": "4047808331317",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Утончённое кольцо с гладкой поверхностью.",
+      "description2": "- Вес и характеристики примерные, могут отличаться; - красное золото; - 585 проба; - вставка: бриллиант; - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "3,950.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 28,
+      "name": "Серьги 4047808331318 золото",
+      "code": "4047808331318",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Кольцо с уникальным орнаментом.",
+      "description2": "- Вес и характеристики примерные, могут отличаться; - красное золото; - 585 проба; - вставка: бриллиант; - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "5,500.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 29,
+      "name": "Серьги 4047808331319 золото",
+      "code": "4047808331319",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Классическое кольцо с декоративными вставками.",
+      "description2": "- Вес и характеристики примерные, могут отличаться; - красное золото; - 585 проба; - вставка: бриллиант; - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "4,750.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    },
+    {
+      "id": 30,
+      "name": "Серьги 4047808331320 золото",
+      "code": "4047808331320",
+      "weight": 6.55,
+      "size": 15.5,
+      "description": "Кольцо с классическим дизайном и блестящим покрытием.",
+      "description2": "- Вес и характеристики примерные, могут отличаться; - красное золото; - 585 проба; - вставка: бриллиант; - английская застежка.",
+      "proof": "585",
+      "inlay": "Бриллиант",
+      "metalColor": "Красное золото",
+      "clasp": "Английская",
+      "forWhom": "Женское",
+      "price": "5,900.00 ₸",
+      "image": "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+      "imageFolder": [
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1002.jpg",
+        "https://api.store.astra-lombard.kz/Files/Images/Program/file-1173.jpg"
+      ]
+    }
+  ]
+}
