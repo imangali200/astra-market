@@ -1,4 +1,6 @@
 {
-  // https://nuxt.com/docs/guide/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json"
+  "extends": "./.nuxt/tsconfig.json", // Keeps Nuxt auto-imports (ref, computed, etc.)
+  "compilerOptions": {
+    "moduleResolution": "node" 
+  }
 }
