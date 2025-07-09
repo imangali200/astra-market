@@ -85,19 +85,55 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import '@splidejs/vue-splide/css';
-import { defineProps } from 'vue';
 
-const props = defineProps({
+interface Product{
+  id: string;
+  name: string;
+  localizedName: string;
+  isLatest: boolean;
+  article: number;
+  uniqueIdentificator: string | null;
+  inStock: boolean;
+  description: string;
+  localizedDescription: string;
+  imagePath: string;
+  basePrice: number;
+  priceWithDiscount: number;
+  individualPrice: number;
+  discountPercent: number;
+  category: {
+    id: string;
+    productsCount: number;
+    name: string;
+    localizedName: string | null;
+    imagePath: string;
+    bannerImagePath: string | null;
+  };
+  source: number;
+  weight: number;
+  isFavourite: boolean;
+  viewCount: number;
+  classification: string | null;
+  createdOn: string;
+  updatedOn: string;
+}
+
+
+const props = defineProps<{
   title: String,
-  products: Array,
+  products: Product[],
   bgClass: String,
-});
+}>();
 
-function useshortdescription(text) {
-  if (window.innerWidth < 650) {
+const screenWidth = ref<number>(0)
+onMounted(()=>{
+  screenWidth.value = window.innerWidth
+})
+function useshortdescription(text :string): string{
+  if (screenWidth.value < 650) {
     const divide = text.split(" ");
     if (divide.length > 2) {
       return divide.slice(0, 2).join(" ") + "...";
@@ -106,8 +142,8 @@ function useshortdescription(text) {
   return text;
 }
 
-function getVisibleCount() {
-  const width = window.innerWidth;
+function getVisibleCount():number {
+  const width = screenWidth.value;
   if (width < 768) return 2;
   if (width < 1024) return 3;
   return 4;

@@ -6,4 +6,7 @@ export default defineNuxtConfig({
     transpile: ["vuetify"],
   },
   modules: ["@nuxtjs/tailwindcss"],
+  alias: {
+    "form-data": "form-data",
+  },
 });

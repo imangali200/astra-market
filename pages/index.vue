@@ -44,7 +44,7 @@
         </button>
       </NuxtLink>
       <NuxtLink
-        to="/allproduct/newproduct"
+        to="/allproduct/74facc22-a6e8-4af1-e2e7-08dba71ef022"
         class="tw-flex tw-justify-center tw-w-full"
       >
         <button
@@ -60,10 +60,7 @@
           >
         </button>
       </NuxtLink>
-      <NuxtLink
-        to="/allproduct/popular"
-        class="tw-flex tw-justify-center tw-w-full"
-      >
+      <NuxtLink to="/allproduct" class="tw-flex tw-justify-center tw-w-full">
         <button
           class="tw-bg-[#34398B] tw-flex tw-justify-center tw-w-full md:tw-w-[420px] md:tw-h-[70px] tw-h-[48px] tw-items-center tw-rounded-[10px] tw-transition tw-duration-700 tw-transform hover:tw-scale-105"
         >
@@ -90,69 +87,114 @@
       bgClass="tw-bg-[#C5E7D4]"
       :products="newProduct"
     ></productSlider>
-    <productSlider title="Популярные товары" bgClass="tw-bg-[#D0D1E4]" :products="popular"></productSlider>
+    <productSlider
+      title="Популярные товары"
+      bgClass="tw-bg-[#D0D1E4]"
+      :products="popular"
+    ></productSlider>
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from "vue";
+<script setup lang="ts">
+import axios from "axios";
 
-const discount = ref([]);
-const newProduct = ref([]);
-const popular = ref([]);
+const discount = ref<Category[]>([]);
+const newProduct = ref<Category[]>([]);
+const popular = ref<Category[]>([]);
+
+interface Category {
+  id: string;
+  name: string;
+  localizedName: string;
+  isLatest: boolean;
+  article: number;
+  uniqueIdentificator: string | null;
+  inStock: boolean;
+  description: string;
+  localizedDescription: string;
+  imagePath: string;
+  basePrice: number;
+  priceWithDiscount: number;
+  individualPrice: number;
+  discountPercent: number;
+  category: {
+    id: string;
+    productsCount: number;
+    name: string;
+    localizedName: string | null;
+    imagePath: string;
+    bannerImagePath: string | null;
+  };
+  source: number;
+  weight: number;
+  isFavourite: boolean;
+  viewCount: number;
+  classification: string | null;
+  createdOn: string;
+  updatedOn: string;
+}
+
+interface CategoryResponse {
+  data: Category[];
+}
 
 onMounted(async () => {
-  const discountRes = await $fetch(
+  const discountRes = await axios.post<CategoryResponse>(
     "https://api.store.astra-lombard.kz/api/v1/products/search",
     {
-      method: "POST",
-      body: JSON.stringify({
-        pageSize: 15,
-        advancedFilter: {
-          field: "discountPercent",
-          operator: "gt",
-          value: 0,
-        },
-      }),
+      pageSize: 15,
+      advancedFilter: {
+        field: "discountPercent",
+        operator: "gt",
+        value: 0,
+      },
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
     }
   );
-  discount.value = discountRes.data;
+  discount.value = discountRes.data.data;
 
-  const newRes = await $fetch(
+  const newRes = await axios.post<CategoryResponse>(
     "https://api.store.astra-lombard.kz/api/v1/products/search",
     {
-      method: "POST",
-      body: JSON.stringify({
-        pageSize: 15,
-        advancedFilter: {
-          filters: [
-            {
-              field: "category.id",
-              operator: "eq",
-              value: "74facc22-a6e8-4af1-e2e7-08dba71ef022",
-            },
-          ],
-          logic: "and",
-        },
-      }),
+      pageSize: 15,
+      advancedFilter: {
+        filters: [
+          {
+            field: "category.id",
+            operator: "eq",
+            value: "74facc22-a6e8-4af1-e2e7-08dba71ef022",
+          },
+        ],
+        logic: "and",
+      },
+    },
+    {
+      headers:{
+        'Content-Type': 'application/json'
+      }
     }
   );
-  newProduct.value = newRes.data;
+  newProduct.value = newRes.data.data;
 
-  const popularRes = await $fetch(
+  const popularRes = await axios.post<CategoryResponse>(
     "https://api.store.astra-lombard.kz/api/v1/products/search",
     {
-      method: "POST",
-      body: JSON.stringify({
-        pageSize: 15,
-        orderBy: ["viewCount desc"]
-      }),
+    
+      pageSize: 15,
+      orderBy: ["viewCount desc"],
+   
+    },{
+      headers:{
+        'Content-Type': 'application/json'
+      }
     }
   );
-  popular.value = popularRes.data
-  console.log(popular.value)
-
-
+  popular.value = popularRes.data.data;
+  console.log(popular.value);
 });
 </script>
 

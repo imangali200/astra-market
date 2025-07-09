@@ -5,15 +5,47 @@ import { useRoute } from "vue-router";
 const route = useRoute();
 const productId = route.params.id;
 const findDatas = ref({});
-const recomend = ref([])
 const mainImg = ref("");
 const dialog = ref(false);
+const similarProduct = ref([])
+let panel = ref(0);
+
 
 async function findwithid() {
-  const res = await $fetch(`https://api.store.astra-lombard.kz/api/v1/products/${productId}`);
-  findDatas.value = res
-  console.log(findDatas.value)
+  const res = await $fetch(
+    `https://api.store.astra-lombard.kz/api/v1/products/${productId}`
+  );
+  findDatas.value = res;
   mainImg.value = findDatas.value.imagePath;
+
+  const similarRes = await $fetch(
+    "https://api.store.astra-lombard.kz/api/v1/products/search",
+    {
+      method: "POST",
+      body: JSON.stringify({
+        pageSize: 30,
+        pageNumber: 1,
+        orderBy: [],
+        advancedFilter: {
+          logic: "and",
+          filters: [
+            {
+              logic: "or",
+              filters: [
+                {
+                  field: "category.id",
+                  operator: "eq",
+                  value: findDatas.value.category.id,
+                },
+              ],
+            },
+          ],
+        },
+      }),
+    }
+  );
+  similarProduct.value = similarRes.data
+
 }
 
 onMounted(() => {
@@ -23,16 +55,22 @@ onMounted(() => {
 
 <template>
   <div class="tw-max-w-[1300px] tw-w-full tw-mx-auto">
-    <div class="tw-flex tw-mb-10 lg:tw-ml-5 tw-gap-4">
+    <div class="tw-flex tw-mb-10 lg:tw-ml-5 tw-pl-5 md:tw-pl-0 tw-gap-4">
       <p>Главная</p>
       <p>/</p>
       <p>Каталог</p>
+      <p>/</p>
+      <template v-if="findDatas.category?.name">
+        {{ findDatas.category.name }}
+      </template>
+
+
     </div>
     <div
       class="tw-max-w-[1300px] tw-w-full tw-flex tw-flex-col md:tw-flex-row tw-justify-center tw-gap-[55px] tw-mx-auto tw-px-4"
     >
       <div
-        class="left  tw-flex tw-flex-col-reverse md:tw-flex-row  tw-items-center tw-border-[1px] tw-h-[540px] tw-max-w-[604px] tw-w-full tw-relative tw-rounded-[14px] tw-px-2 tw-gap-5"
+        class="left tw-flex tw-flex-col-reverse md:tw-flex-row tw-items-center tw-border-[1px] tw-h-[540px] tw-max-w-[604px] tw-w-full tw-relative tw-rounded-[14px] tw-px-2 tw-gap-5"
       >
         <div
           class="tw-flex tw-w-full tw-top-3 tw-absolute md:tw-left-2 md:tw-top-2 tw-pl-2 md:tw-pl-0"
@@ -48,24 +86,27 @@ onMounted(() => {
             alt=""
           />
           <img
-            class=" tw-w-[32px] tw-h-[32px]"
+            class="tw-w-[32px] tw-h-[32px]"
             src="/public/imgs/crown2.png"
             alt=""
           />
         </div>
-        <div class="tw-flex tw-flex-row md:tw-flex-col tw-gap-2">
+        <div
+          v-if="findDatas.metadata?.attachmentsArray"
+          class="tw-flex tw-flex-row md:tw-flex-col tw-gap-2"
+        >
           <img
-            v-for="eachimg in findDatas.imageFolder"
-            :key="eachimg"
-            @click="mainImg = eachimg"
+            v-for="(eachimg, index) in findDatas.metadata.attachmentsArray"
+            :key="index"
+            @click="mainImg = eachimg.path"
             class="tw-w-[60px] tw-h-[60px] tw-rounded-[14px] tw-object-cover"
-            :src="eachimg"
+            :src="eachimg.path"
             alt=""
           />
         </div>
         <div>
           <img
-          @click="dialog = true"
+            @click="dialog = true"
             class="tw-max-w-[498px] tw-w-full tw-h-full"
             :src="mainImg"
             alt=""
@@ -73,7 +114,7 @@ onMounted(() => {
         </div>
         <v-dialog v-model="dialog" max-width="500px">
           <v-card>
-            <img :src="mainImg" alt="">
+            <img :src="mainImg" alt="" />
             <v-card-actions>
               <v-btn color="green" @click="dialog = false">Close</v-btn>
             </v-card-actions>
@@ -128,7 +169,7 @@ onMounted(() => {
           </button>
         </div>
         <div class="tw-w-full tw-flex tw-flex-col tw-gap-5 tw-mt-5">
-          <v-expansion-panels>
+          <v-expansion-panels v-model="panel">
             <v-expansion-panel title="Описание">
               <v-expansion-panel-text>
                 <p class="tw-text-[18px] tw-font-semibold">
@@ -144,35 +185,14 @@ onMounted(() => {
               <v-expansion-panel-text>
                 <table class="tw-w-full tw-text-left tw-border-collapse">
                   <tbody>
-                    <tr>
-                      <td class="tw-font-semibold tw-py-2 tw-pr-4">Проба:</td>
-                      <td class="tw-py-2 tw-text-end">{{ findDatas.proof }}</td>
-                    </tr>
-                    <tr>
-                      <td class="tw-font-semibold tw-py-2 tw-pr-4">Вставка:</td>
-                      <td class="tw-py-2 tw-text-end">{{ findDatas.inlay }}</td>
-                    </tr>
-                    <tr>
+                    <tr
+                      v-for="filter in findDatas.metadata.filtersArray"
+                      :key="filter"
+                    >
                       <td class="tw-font-semibold tw-py-2 tw-pr-4">
-                        Цвет металла:
+                        {{ filter.name }}:
                       </td>
-                      <td class="tw-py-2 tw-text-end">
-                        {{ findDatas.metalColor }}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="tw-font-semibold tw-py-2 tw-pr-4">
-                        Застежка:
-                      </td>
-                      <td class="tw-py-2 tw-text-end">{{ findDatas.clasp }}</td>
-                    </tr>
-                    <tr>
-                      <td class="tw-font-semibold tw-py-2 tw-pr-4">
-                        Для кого:
-                      </td>
-                      <td class="tw-py-2 tw-text-end">
-                        {{ findDatas.forWhom }}
-                      </td>
+                      <td class="tw-py-2 tw-text-end">{{ filter.value }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -182,7 +202,9 @@ onMounted(() => {
         </div>
       </div>
     </div>
-    
   </div>
-  <productSlider bgClass="tw-bg-white" :products="recomend"></productSlider>
+  <div>
+    <productSlider bgClass="tw-bg-white" :products="similarProduct"></productSlider>
+  </div>
+  
 </template>

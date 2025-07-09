@@ -3,16 +3,16 @@
     class="tw-max-w-[1300px] tw-w-full ttw-gap-[40px] tw-mt-2 tw-p-4 tw-mx-auto md:tw-py-[70px]"
   >
     <div
-      class="tw-grid tw-grid-cols-2 md:tw-grid-cols-4 tw-w-full tw-gap-[20px]"
+      class="tw-grid tw-grid-cols-1 md:tw-grid-cols-4 tw-w-full tw-gap-[20px]"
     >
-      <div class="left md:tw-col-span-1 tw-bg-gray-100 tw-p-4">
+      <div class="left tw-hidden md:tw-block md:tw-col-span-1 tw-bg-gray-100 tw-p-4">
         <div
           class="tw-rounded-[14px] tw-border-[1px] tw-border-gray-[#EBEBEB] tw-overflow-hidden"
         >
           <v-expansion-panels v-model="panel">
             <v-expansion-panel>
               <v-expansion-panel-title>ЦЕНА</v-expansion-panel-title>
-              <v-expanstion-panel-text>
+              <v-expansion-panel-text>
                 <div class="tw-flex tw-flex-col tw-px-5 tw-gap-2">
                   <div class="tw-flex tw-gap-2">
                     <v-text-field
@@ -41,7 +41,7 @@
                     track-color="gray"
                   />
                 </div>
-              </v-expanstion-panel-text>
+              </v-expansion-panel-text>
             </v-expansion-panel>
           </v-expansion-panels>
         </div>
@@ -49,12 +49,12 @@
           <v-expansion-panels>
             <v-expansion-panel>
               <v-expansion-panel-title>ПРОБА</v-expansion-panel-title>
-              <v-expanstion-panel-text>
+              <v-expansion-panel-text>
                 <div>
                   <div></div>
                   <input type="checkbox" />
                 </div>
-              </v-expanstion-panel-text>
+              </v-expansion-panel-text>
             </v-expansion-panel>
           </v-expansion-panels>
         </div>
@@ -64,7 +64,7 @@
       >
         <NuxtLink
           class="right tw-flex tw-justify-between tw-flex-col tw-bg-white tw-relative tw-rounded-[14px] tw-border-[1px] tw-gap-2 tw-pb-2 tw-px-2 tw-flex-shrink-0 tw-h-[253px] sm:tw-h-[300px] md:tw-h-[360px] tw-w-full"
-          v-for="product in datas"
+          v-for="product in pagecount"
           :key="product.id"
           :to="`/moreInformation/${product.id}`"
         >
@@ -94,19 +94,27 @@
           </div>
           <img
             class="tw-h-[139px] sm:tw-h-[160px] md:tw-h-[180px] tw-w-full tw-object-cover"
-            :src="product.image"
+            :src="product.imagePath"
             alt=""
           />
-          <p>{{ useshortdescription(product.description) }}</p>
+          <p>{{ useshortdescription(product.name) }}</p>
           <div class="tw-flex tw-justify-between tw-items-center">
             <div
               class="tw-flex tw-flex-col sm:tw-flex-row sm:tw-gap-[16px] tw-text-[#909090] tw-text-base"
             >
-              <span class="tw-text-[#34398B] tw-text-base tw-font-semibold">
-                {{ product.price }}
+              <span
+                class="tw-text-[#34398B] tw-text-sm md:tw-text-[24px] tw-font-medium"
+              >
+                {{ product.basePrice }} ₸
               </span>
-              <span class="tw-line-through">
-                {{ product.oldPrice }}
+              <span
+                v-if="
+                  product.priceWithDiscount !== product.basePrice
+                    ? product.priceWithDiscount
+                    : ''
+                "
+                class="tw-line-through tw-text-[12px] md:tw-text-base"
+              >
               </span>
             </div>
             <img
@@ -132,55 +140,74 @@
         </NuxtLink>
       </div>
     </div>
-  </div>
-</template>
-<!-- <v-pagination
+    <v-pagination
         v-model="currentPage"
         :length="pageCount"
         class="tw-mt-6 tw-flex tw-justify-center"
-      /> -->
+      />
+  </div>
+</template>
+
 
 <script setup>
+
 import { ref, computed, onMounted } from "vue";
-import { useRoute } from "vue-router";
 const route = useRoute();
-const datas = ref([]);
+let datas = ref([]);
 const panel = ref(0);
 const priceRange = ref([290637, 493350]);
+
+console.log(route.params.name);
 onMounted(async () => {
-  const allProduct = await $fetch("/products.json");
-  datas.value = allProduct[route.params.name];
-  console.log(datas.value);
+  const categoryRes = await $fetch(
+    "https://api.store.astra-lombard.kz/api/v1/products/search",
+    {
+      method: "POST",
+      body: JSON.stringify({
+        pageSize: 30,
+        pageNumber: 1,
+        orderBy: [],
+        advancedFilter: {
+          logic: "and",
+          filters: [
+            {
+              logic: "or",
+              filters: [
+                {
+                  field: "category.id",
+                  operator: "eq",
+                  value: route.params.name,
+                },
+              ],
+            },
+          ],
+        },
+      }),
+    }
+  );
+
+  datas.value = categoryRes.data || [];
 });
 function useshortdescription(words) {
-  const divide = words.split(" ");
-  if (divide.length > 3) {
-    return divide.slice(0, 3).join(" ") + "...";
+  if (window.innerWidth < 768) {
+    const divide = words.split(" ");
+    if (divide.length > 3) {
+      return divide.slice(0, 3).join(" ") + "...";
+    }
   }
   return words;
 }
-// function limitLength(num){
-//   if(num.length > 5){
-//     price.value = SubmitEvent.slice(0,5)
-//   }
-// }
 
-// const itemsPerPage = 20;
-// const currentPage = ref(1);
+const itemsPerPage = 12;
+const currentPage = ref(1);
 
-// // Example: 400 fake products
-// const allItems = Array.from({ length: 400 }, (_, i) => ({
-//   id: i + 1,
-//   name: `Product ${i + 1}`,
-// }));
+const pageCount = computed(() => {
+  return Math.ceil(datas.value.length / itemsPerPage);
+});
 
-// const pageCount = computed(() => {
-//   return Math.ceil(allItems.length / itemsPerPage);
-// });
-
-// const paginatedItems = computed(() => {
-//   const start = (currentPage.value - 1) * itemsPerPage;
-//   const end = start + itemsPerPage;
-//   return allItems.slice(start, end);
-// });
+const pagecount = computed(()=>{ 
+  const start = (currentPage.value -1) *itemsPerPage
+  const end = start + itemsPerPage
+  return datas.value.slice(start,end)
+})
 </script>
