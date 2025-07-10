@@ -1,52 +1,74 @@
 <script setup>
-import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
+definePageMeta({
+  path: '/products/detail',
+});
 
+import axios from "axios";
 const route = useRoute();
-const productId = route.params.id;
+
+const productId = ref(route.query.categoryId);
+watch(
+  () => route.query.categoryId,
+  (newId, oldId) => {
+    if (newId !== oldId) {
+      productId.value = newId;
+      window.scrollTo({
+        top:0,
+        behavior:'smooth'
+      })
+      findwithid(); 
+    }
+  }
+);
+
 const findDatas = ref({});
 const mainImg = ref("");
 const dialog = ref(false);
-const similarProduct = ref([])
+const similarProduct = ref([]);
 let panel = ref(0);
 
 
+
+
 async function findwithid() {
-  const res = await $fetch(
-    `https://api.store.astra-lombard.kz/api/v1/products/${productId}`
+  if(!productId.value) return
+  const res = await axios.get(
+    `https://api.store.astra-lombard.kz/api/v1/products/${productId.value}`
   );
-  findDatas.value = res;
+  findDatas.value = res.data;
   mainImg.value = findDatas.value.imagePath;
 
-  const similarRes = await $fetch(
+  const similarRes = await axios.post(
     "https://api.store.astra-lombard.kz/api/v1/products/search",
     {
-      method: "POST",
-      body: JSON.stringify({
-        pageSize: 30,
-        pageNumber: 1,
-        orderBy: [],
-        advancedFilter: {
-          logic: "and",
-          filters: [
-            {
-              logic: "or",
-              filters: [
-                {
-                  field: "category.id",
-                  operator: "eq",
-                  value: findDatas.value.category.id,
-                },
-              ],
-            },
-          ],
-        },
-      }),
+      pageSize: 30,
+      pageNumber: 1,
+      orderBy: [],
+      advancedFilter: {
+        logic: "and",
+        filters: [
+          {
+            logic: "or",
+            filters: [
+              {
+                field: "category.id",
+                operator: "eq",
+                value: findDatas.value.category.id,
+              },
+            ],
+          },
+        ],
+      },
+    },
+    {
+      headers:{
+        "Content-Type":'application/json'
+      }
     }
   );
-  similarProduct.value = similarRes.data
-
+  similarProduct.value = similarRes.data.data;
 }
+
 
 onMounted(() => {
   findwithid();
@@ -63,8 +85,6 @@ onMounted(() => {
       <template v-if="findDatas.category?.name">
         {{ findDatas.category.name }}
       </template>
-
-
     </div>
     <div
       class="tw-max-w-[1300px] tw-w-full tw-flex tw-flex-col md:tw-flex-row tw-justify-center tw-gap-[55px] tw-mx-auto tw-px-4"
@@ -204,7 +224,9 @@ onMounted(() => {
     </div>
   </div>
   <div>
-    <productSlider bgClass="tw-bg-white" :products="similarProduct"></productSlider>
+    <productSlider
+      bgClass="tw-bg-white"
+      :products="similarProduct"
+    ></productSlider>
   </div>
-  
 </template>

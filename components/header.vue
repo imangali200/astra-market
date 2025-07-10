@@ -131,29 +131,32 @@
             alt=""
           />
           <input
-
-
+            v-model="searchTerm"
             type="text"
             placeholder="Поиск товаров..."
             class="tw-w-full md:tw-w-[175px] tw-border-none tw-text-sm tw-outline-none tw-text-[#909090]"
+            @keyup.enter="
+              $router.push({
+                path: '/products/product-list',
+                query: { search: searchTerm },
+              });
+              searchTerm = '';
+            "
           />
         </div>
         <NuxtLink to="/login"
           ><img
-            width="48px"
-            height="48px"
+            class="tw-w-[40px] tw-h-[40px] sm:tw-w-[48px] sm:tw-h-[48px] tw-object-cover tw-mx-5 tw-mr-8 sm:tw-m-0"
             src="/public/imgs/user logo.png"
             alt=""
         /></NuxtLink>
         <img
-          width="48px"
-          height="48px"
+          class="tw-w-[40px] tw-h-[40px] sm:tw-w-[48px] sm:tw-h-[48px] tw-object-cover"
           src="/public/imgs/like logo.png"
           alt=""
         />
         <img
-          width="48px"
-          height="48px"
+          class="tw-w-[40px] tw-h-[40px] sm:tw-w-[48px] sm:tw-h-[48px] tw-object-cover"
           src="/public/imgs/korzinka.png"
           alt=""
         />
@@ -164,7 +167,7 @@
     v-if="route.path !== '/login' && route.path !== '/register'"
     :class="[
       openMenu
-        ? 'tw-fixed tw-left-0 tw-top-0 tw-right-0 tw-bottom-0 tw-z-50 tw-bg-white tw-flex tw-flex-col tw-overflow-auto tw-px-4 tw-py-8'
+        ? 'tw-fixed tw-left-0 tw-top-0 tw-right-0 tw-bottom-[-20px] tw-z-50 tw-bg-white tw-flex tw-flex-col tw-overflow-auto tw-px-4 tw-py-8'
         : 'tw-hidden',
       'md:tw-flex',
       'lg:tw-flex-row',
@@ -193,20 +196,32 @@
         />
       </div>
 
-      <NuxtLink
-        :to="`/allproduct/${item.id}`"
+      <div
+        @click="
+          $router.push({
+            path: '/products/product-list',
+            query: { categoryId: item.id },
+          });
+          openMenu = false;
+        "
         v-for="item in items"
         :key="item.id"
         class="md:tw-w-full lg:tw-max-w-[252px] tw-flex tw-flex-row-reverse md:tw-flex-row tw-justify-between md:tw-justify-normal md:tw-flex tw-px-4 tw-items-center tw-gap-4 tw-bg-[#F8F8F8] md:tw-p-[4px] tw-rounded-[12px] tw-h-[64px]"
       >
         <img class="tw-w-[56px] tw-h-[56px]" :src="item.imagePath" alt="" />
         <p class="tw-text-sm tw-font-semibold">{{ item.name }}</p>
-      </NuxtLink>
+      </div>
     </div>
     <div class="md:tw-w-full lg:tw-w-[252px]">
-      <NuxtLink
-        :to="`/allproduct/${bottomItem.id}`"
-        v-for="(bottomItem,index) in bottomItems"
+      <div
+        @click="
+          $router.push({
+            path: '/products/product-list',
+            query: { categoryId: bottomItem.id },
+          });
+          openMenu = false;
+        "
+        v-for="(bottomItem, index) in bottomItems"
         :key="index"
         class="md:tw-w-full lg:tw-w-[252px] tw-h-[64px] lg:tw-h-[138px] tw-justify-between tw-flex md:tw-justify-center tw-items-center tw-pl-5 tw-bg-[#F8F8F8] tw-rounded-[12px]"
       >
@@ -218,17 +233,18 @@
           :src="bottomItem.imagePath"
           alt=""
         />
-      </NuxtLink>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import axios from 'axios';
+import axios from "axios";
 
 const showMenu = ref(false);
 const openMenu = ref(false);
-// const inputValue = useState<string>('sharedInput', () => '')
+const searchTerm = ref("");
+const router = useRouter();
 
 interface Category {
   id: string;
@@ -257,17 +273,16 @@ onMounted(async () => {
     "https://api.store.astra-lombard.kz/api/v1/categories/search",
     {
       pageSize: 1000,
-      orderBy: ["name"]
+      orderBy: ["name"],
     },
     {
       headers: {
         "Content-Type": "application/json",
-      }
+      },
     }
   );
 
   items.value = response.data.data.slice(0, 8);
   bottomItems.value = response.data.data.slice(8, 9);
 });
-
 </script>

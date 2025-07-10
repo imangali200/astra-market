@@ -1,10 +1,13 @@
 <template>
   <div class="tw-w-full tw-mt-3" :class="bgClass">
-    <div class="tw-max-w-[1300px] tw-mx-auto tw-px-[16px] tw-py-[40px] md:tw-p-[70px]  tw-flex tw-flex-col tw-gap-[20px] md:tw-gap-[40px] ">
-      <h1 class="tw-text-2xl md:tw-text-[39px] lg:tw-text-[50px] tw-text-white tw-mb-4 tw-flex tw-items-center tw-justify-between">
+    <div
+      class="tw-max-w-[1300px] tw-mx-auto tw-px-[16px] tw-py-[40px] md:tw-p-[70px] tw-flex tw-flex-col tw-gap-[20px] md:tw-gap-[40px]"
+    >
+      <h1
+        class="tw-text-2xl md:tw-text-[39px] lg:tw-text-[50px] tw-text-white tw-mb-4 tw-flex tw-items-center tw-justify-between"
+      >
         {{ title }}
         <p class="tw-text-[#34398B] tw-text-xs tw-block md:tw-hidden">Все</p>
-
       </h1>
 
       <Splide
@@ -19,24 +22,35 @@
           arrows: true,
           pagination: false,
           breakpoints: {
-            768: { perPage: 2 },
-            1024: { perPage: 3 },
-          }
+            768: { perPage: 2,gap: '40px', },
+            1024: { perPage: 3,gap:'20px', },
+          },
         }"
         ref="splideRef"
       >
-        <SplideSlide v-for="product in products" :key="product.id">
-          <NuxtLink
-            :to="`/moreInformation/${product.id}`"
-            class="tw-bg-white tw-rounded-[14px] tw-border tw-p-4 tw-h-[360px] tw-flex tw-flex-col tw-justify-between"
+        <SplideSlide  v-for="product in products" :key="product.id">
+          <div
+            @click="
+              $router.push({
+                path: '/products/detail',
+                query: { categoryId: product.id },
+              })
+            "
+            class="tw-bg-white tw-rounded-[14px] tw-border tw-p-4 tw-h-[270px] md:tw-h-[360px] tw-w-[175px] md:tw-w-auto tw-flex tw-flex-col tw-justify-between"
           >
-          <div class="tw-flex tw-w-full tw-top-3 tw-absolute md:tw-left-2 md:tw-top-2">
+            <div
+              class="tw-flex tw-w-full tw-top-3 tw-absolute md:tw-left-2 md:tw-top-2"
+            >
               <img
                 class="tw-hidden md:tw-block tw-w-[32px] tw-h-[32px]"
                 src="/public/imgs/discout2.png"
                 alt=""
               />
-              <img class="tw-w-[32px] tw-h-[32px]" src="/public/imgs/star2.png" alt="" />
+              <img
+                class="tw-w-[32px] tw-h-[32px]"
+                src="/public/imgs/star2.png"
+                alt=""
+              />
               <img
                 class="tw-hidden md:tw-block tw-w-[32px] tw-h-[32px]"
                 src="/public/imgs/crown2.png"
@@ -53,14 +67,22 @@
               :src="product.imagePath"
               alt=""
             />
-            <p>{{ useshortdescription(product.name) }}</p>
-            <div class="tw-flex tw-justify-between items-center ">
-              <div class="tw-flex tw-flex-col sm:tw-flex-row sm:tw-gap-[16px] tw-text-[#909090] tw-text-base">
-                <span class="tw-text-[#34398B] tw-text-sm md:tw-text-[24px] tw-font-medium">
+            <p class="desc tw-tracking-tighter tw-text-sm md:tw-text-base">{{ useshortdescription(product.name) }}</p>
+            <div class="tw-flex tw-justify-between items-center">
+              <div
+                class="tw-flex tw-flex-col sm:tw-flex-row sm:tw-gap-[16px] tw-text-[#909090] tw-text-base"
+              >
+                <span
+                  class="tw-text-[#34398B] tw-text-sm md:tw-text-[24px] tw-font-medium"
+                >
                   {{ product.basePrice }} ₸
                 </span>
                 <span
-                  v-if="product.priceWithDiscount !== product.basePrice ? product.priceWithDiscount : ''"
+                  v-if="
+                    product.priceWithDiscount !== product.basePrice
+                      ? product.priceWithDiscount
+                      : ''
+                  "
                   class="tw-line-through tw-text-[12px] md:tw-text-base"
                 >
                   {{ product.priceWithDiscount }} ₸
@@ -72,13 +94,21 @@
                 alt=""
               />
             </div>
-            <div class="tw-hidden sm:tw-flex tw-justify-between tw-items-center sm:tw-mb-[10px]">
-              <button class="tw-text-[#FF8A00] tw-bg-[#FFEEDB] tw-w-[211px] tw-h-[40px] tw-rounded-[12px]">
+            <div
+              class="tw-hidden sm:tw-flex tw-justify-between tw-items-center sm:tw-mb-[10px]"
+            >
+              <button
+                class="tw-text-[#FF8A00] tw-bg-[#FFEEDB] tw-w-[211px] tw-h-[40px] tw-rounded-[12px]"
+              >
                 Купить
               </button>
-              <img class="tw-w-[24px] tw-h-[24px]" src="/public/imgs/orrange like.png" alt="" />
+              <img
+                class="tw-w-[24px] tw-h-[24px]"
+                src="/public/imgs/orrange like.png"
+                alt=""
+              />
             </div>
-          </NuxtLink>
+          </div>
         </SplideSlide>
       </Splide>
     </div>
@@ -86,10 +116,10 @@
 </template>
 
 <script setup lang="ts">
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import '@splidejs/vue-splide/css';
+import { Splide, SplideSlide } from "@splidejs/vue-splide";
+import "@splidejs/vue-splide/css";
 
-interface Product{
+interface Product {
   id: string;
   name: string;
   localizedName: string;
@@ -121,28 +151,27 @@ interface Product{
   updatedOn: string;
 }
 
-
 const props = defineProps<{
-  title: String,
-  products: Product[],
-  bgClass: String,
+  title: String;
+  products: Product[];
+  bgClass: String;
 }>();
 
-const screenWidth = ref<number>(0)
-onMounted(()=>{
-  screenWidth.value = window.innerWidth
-})
-function useshortdescription(text :string): string{
+const screenWidth = ref<number>(0);
+onMounted(() => {
+  screenWidth.value = window.innerWidth;
+});
+function useshortdescription(text: string): string {
   if (screenWidth.value < 650) {
-    const divide = text.split(" ");
-    if (divide.length > 2) {
-      return divide.slice(0, 2).join(" ") + "...";
+    const divide = text.split("");
+    if (divide.length > 10) {
+      return divide.slice(0, 10).join(" ") + "...";
     }
   }
   return text;
 }
 
-function getVisibleCount():number {
+function getVisibleCount(): number {
   const width = screenWidth.value;
   if (width < 768) return 2;
   if (width < 1024) return 3;

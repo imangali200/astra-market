@@ -26,8 +26,13 @@
     <div
       class="tw-grid tw-max-w-[1300px] tw-w-full px-4 tw-grid-cols-1 md:tw-grid-cols-3 tw-gap-5 tw-my-6 tw-mx-auto"
     >
-      <NuxtLink
-        to="/allproduct/discounts"
+      <div
+        @click="
+          $router.push({
+            path: '/products/product-list',
+            query: { categoryType: 'discountPercent' },
+          })
+        "
         class="tw-flex tw-justify-center tw-w-full"
       >
         <button
@@ -42,9 +47,14 @@
             >Скидки</span
           >
         </button>
-      </NuxtLink>
-      <NuxtLink
-        to="/allproduct/74facc22-a6e8-4af1-e2e7-08dba71ef022"
+      </div>
+      <div
+        @click="
+          $router.push({
+            path: '/products/product-list',
+            query: { categoryId: '74facc22-a6e8-4af1-e2e7-08dba71ef022' },
+          })
+        "
         class="tw-flex tw-justify-center tw-w-full"
       >
         <button
@@ -59,8 +69,16 @@
             >Новинки</span
           >
         </button>
-      </NuxtLink>
-      <NuxtLink to="/allproduct" class="tw-flex tw-justify-center tw-w-full">
+      </div>
+      <div
+        @click="
+          $router.push({
+            path: '/products/product-list',
+            query: { categoryType: 'viewCount' },
+          })
+        "
+        class="tw-flex tw-justify-center tw-w-full"
+      >
         <button
           class="tw-bg-[#34398B] tw-flex tw-justify-center tw-w-full md:tw-w-[420px] md:tw-h-[70px] tw-h-[48px] tw-items-center tw-rounded-[10px] tw-transition tw-duration-700 tw-transform hover:tw-scale-105"
         >
@@ -73,7 +91,7 @@
             >Популярные</span
           >
         </button>
-      </NuxtLink>
+      </div>
     </div>
 
     <!-- main -->
@@ -173,9 +191,9 @@ onMounted(async () => {
       },
     },
     {
-      headers:{
-        'Content-Type': 'application/json'
-      }
+      headers: {
+        "Content-Type": "application/json",
+      },
     }
   );
   newProduct.value = newRes.data.data;
@@ -183,14 +201,13 @@ onMounted(async () => {
   const popularRes = await axios.post<CategoryResponse>(
     "https://api.store.astra-lombard.kz/api/v1/products/search",
     {
-    
       pageSize: 15,
       orderBy: ["viewCount desc"],
-   
-    },{
-      headers:{
-        'Content-Type': 'application/json'
-      }
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
     }
   );
   popular.value = popularRes.data.data;

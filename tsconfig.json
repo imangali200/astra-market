@@ -1,5 +1,5 @@
 {
-  "extends": "./.nuxt/tsconfig.json", // Keeps Nuxt auto-imports (ref, computed, etc.)
+  "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
     "moduleResolution": "node" 
   }
