@@ -322,8 +322,8 @@ const filterdata = ref<filter[]>([]);
 const showMobileFilter = ref(false);
 const token = useCookie("token");
 const router = useRouter();
-import { useToast } from "vue-toastification";
-const toast = useToast();
+// import { useToast } from "vue-toastification";
+// const toast = useToast();
 
 interface Category {
   id: string;
@@ -580,10 +580,10 @@ async function tokorzina(id: string) {
         },
       }
     );
-    toast.success("товар успешно добавлен в корзину", {});
+    // toast.success("товар успешно добавлен в корзину", {});
     await getdata();
   } catch (error) {
-    toast.error("товар уже добавлен в корзину", {});
+    // toast.error("товар уже добавлен в корзину", {});
   }
 }
 

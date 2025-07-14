@@ -2,8 +2,8 @@
 definePageMeta({
   path: "/products/detail",
 });
-import { useToast } from "vue-toastification";
-const toast = useToast()
+// import { useToast } from "vue-toastification";
+// const toast = useToast()
 import { getdata } from "~/composable/useKorzina";
 import axios from "axios";
 const route = useRoute();
@@ -88,14 +88,14 @@ async function tokorzina(id) {
         },
       }
     );
-    toast.success('товар успешно добавлен в корзину',{
-    })
+    // toast.success('товар успешно добавлен в корзину',{
+    // })
     
     
     await getdata();
   } catch (error) {
-    toast.error('товар уже добавлен в корзину',{
-    })
+    // toast.error('товар уже добавлен в корзину',{
+    // })
   }
 }
 

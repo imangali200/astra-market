@@ -129,8 +129,8 @@ import { getdata } from "~/composable/useKorzina";
 const token = useCookie("token");
 const router = useRouter();
 import axios from "axios";
-import { useToast } from "vue-toastification";
-const toast = useToast();
+// import { useToast } from "vue-toastification";
+// const toast = useToast();
 
 interface Product {
   id: string;
@@ -223,10 +223,10 @@ async function tokorzina(id: string) {
         },
       }
     );
-    toast.success("товар успешно добавлен в корзину", {});
+    // toast.success("товар успешно добавлен в корзину", {});
     getdata();
   } catch (error) {
-    toast.error("товар уже добавлен в корзину", {});
+    // toast.error("товар уже добавлен в корзину", {});
   }
 }
 </script>
