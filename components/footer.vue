@@ -1,5 +1,5 @@
 <template>
-    <footer class="tw-flex tw-justify-center tw-mt-8">
+    <footer v-if="route.path !== '/oferta'" class="tw-flex tw-justify-center tw-mt-8">
         <div class="footer tw-max-w-[1300px] tw-w-full  tw-border-t tw-mx-auto px-4">
             <div class="top tw-w-full  tw-flex tw-flex-col tw-items-center lg:tw-flex-row tw-justify-between lg:tw-items-start tw-py-[30px]">
                 <div class="tw-flex tw-w-full lg:tw-w-auto tw-flex-col tw-justify-start tw-gap-[15px]">

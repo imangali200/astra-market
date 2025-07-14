@@ -1,10 +1,14 @@
 <script setup>
 definePageMeta({
-  path: '/products/detail',
+  path: "/products/detail",
 });
-
+import { useToast } from "vue-toastification";
+const toast = useToast()
+import { getdata } from "~/composable/useKorzina";
 import axios from "axios";
 const route = useRoute();
+const router = useRouter();
+const token = useCookie("token");
 
 const productId = ref(route.query.categoryId);
 watch(
@@ -13,10 +17,10 @@ watch(
     if (newId !== oldId) {
       productId.value = newId;
       window.scrollTo({
-        top:0,
-        behavior:'smooth'
-      })
-      findwithid(); 
+        top: 0,
+        behavior: "smooth",
+      });
+      findwithid();
     }
   }
 );
@@ -27,11 +31,8 @@ const dialog = ref(false);
 const similarProduct = ref([]);
 let panel = ref(0);
 
-
-
-
 async function findwithid() {
-  if(!productId.value) return
+  if (!productId.value) return;
   const res = await axios.get(
     `https://api.store.astra-lombard.kz/api/v1/products/${productId.value}`
   );
@@ -61,14 +62,42 @@ async function findwithid() {
       },
     },
     {
-      headers:{
-        "Content-Type":'application/json'
-      }
+      headers: {
+        "Content-Type": "application/json",
+      },
     }
   );
   similarProduct.value = similarRes.data.data;
 }
-
+async function tokorzina(id) {
+  try {
+    if (!token) {
+      router.push({
+        path: "/login",
+      });
+    }
+    const tokorzinaRes = await axios.post(
+      "https://api.store.astra-lombard.kz/api/v1/cart",
+      {
+        productId: id,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token.value}`,
+        },
+      }
+    );
+    toast.success('товар успешно добавлен в корзину',{
+    })
+    
+    
+    await getdata();
+  } catch (error) {
+    toast.error('товар уже добавлен в корзину',{
+    })
+  }
+}
 
 onMounted(() => {
   findwithid();
@@ -183,6 +212,7 @@ onMounted(() => {
             </span>
           </div>
           <button
+            @click="tokorzina(findDatas.id)"
             class="tw-bg-[#FF8A00] tw-text-white tw-max-w-[320px] tw-w-full tw-h-[48px] tw-rounded-[8px]"
           >
             ДОБАВИТЬ В КОРЗИНУ

@@ -22,21 +22,15 @@
           arrows: true,
           pagination: false,
           breakpoints: {
-            768: { perPage: 2,gap: '40px', },
-            1024: { perPage: 3,gap:'20px', },
+            768: { perPage: 2, gap: '40px' },
+            1024: { perPage: 3, gap: '20px' },
           },
         }"
         ref="splideRef"
       >
-        <SplideSlide  v-for="product in products" :key="product.id">
+        <SplideSlide v-for="product in products" :key="product.id">
           <div
-            @click="
-              $router.push({
-                path: '/products/detail',
-                query: { categoryId: product.id },
-              })
-            "
-            class="tw-bg-white tw-rounded-[14px] tw-border tw-p-4 tw-h-[270px] md:tw-h-[360px] tw-w-[175px] md:tw-w-auto tw-flex tw-flex-col tw-justify-between"
+            class="tw-bg-white tw-rounded-[14px] tw-border tw-p-4 tw-h-[270px] md:tw-h-[360px] tw-w-[175px] md:tw-w-auto tw-flex tw-flex-col tw-justify-between tw-relative"
           >
             <div
               class="tw-flex tw-w-full tw-top-3 tw-absolute md:tw-left-2 md:tw-top-2"
@@ -56,18 +50,28 @@
                 src="/public/imgs/crown2.png"
                 alt=""
               />
+
               <img
-                class="tw-block tw-w-[32px] tw-h-[32px] md:tw-hidden tw-absolute tw-right-6"
+                @click="favorite(product.id)"
+                class="tw-block tw-w-[32px] tw-h-[32px] md:tw-hidden tw-absolute tw-right-5"
                 src="/public/imgs/like2.png"
                 alt=""
               />
             </div>
             <img
+              @click="
+                $router.push({
+                  path: '/products/detail',
+                  query: { categoryId: product.id },
+                })
+              "
               class="tw-h-[139px] sm:tw-h-[160px] md:tw-h-[180px] lg:tw-w-[250px] tw-w-full tw-object-cover"
               :src="product.imagePath"
               alt=""
             />
-            <p class="desc tw-tracking-tighter tw-text-sm md:tw-text-base">{{ useshortdescription(product.name) }}</p>
+            <p class="desc tw-tracking-tighter tw-text-sm md:tw-text-base">
+              {{ useshortdescription(product.name) }}
+            </p>
             <div class="tw-flex tw-justify-between items-center">
               <div
                 class="tw-flex tw-flex-col sm:tw-flex-row sm:tw-gap-[16px] tw-text-[#909090] tw-text-base"
@@ -98,11 +102,14 @@
               class="tw-hidden sm:tw-flex tw-justify-between tw-items-center sm:tw-mb-[10px]"
             >
               <button
+                @click="tokorzina(product.id)"
                 class="tw-text-[#FF8A00] tw-bg-[#FFEEDB] tw-w-[211px] tw-h-[40px] tw-rounded-[12px]"
               >
-                Купить
+                В корзину
               </button>
+
               <img
+                @click="favorite(product.id)"
                 class="tw-w-[24px] tw-h-[24px]"
                 src="/public/imgs/orrange like.png"
                 alt=""
@@ -118,6 +125,12 @@
 <script setup lang="ts">
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import "@splidejs/vue-splide/css";
+import { getdata } from "~/composable/useKorzina";
+const token = useCookie("token");
+const router = useRouter();
+import axios from "axios";
+import { useToast } from "vue-toastification";
+const toast = useToast();
 
 interface Product {
   id: string;
@@ -176,5 +189,44 @@ function getVisibleCount(): number {
   if (width < 768) return 2;
   if (width < 1024) return 3;
   return 4;
+}
+async function favorite(id: string) {
+  const postFavorites = await axios.post(
+    "https://api.store.astra-lombard.kz/api/v1/favourites",
+    {
+      productId: id,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token.value}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+}
+async function tokorzina(id: string) {
+  try {
+    if (!token) {
+      router.push({
+        path: "/login",
+      });
+    }
+    const tokorzinaRes = await axios.post(
+      "https://api.store.astra-lombard.kz/api/v1/cart",
+      {
+        productId: id,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token.value}`,
+        },
+      }
+    );
+    toast.success("товар успешно добавлен в корзину", {});
+    getdata();
+  } catch (error) {
+    toast.error("товар уже добавлен в корзину", {});
+  }
 }
 </script>

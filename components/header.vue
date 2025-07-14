@@ -1,5 +1,5 @@
-<template class="tw-flex tw-flex-col tw-justify-center tw-items-center">
-  <header
+<template  class="tw-flex tw-flex-col tw-justify-center tw-items-center">
+  <header v-if="route.path !== '/oferta'"
     class="tw-flex tw-items-center tw-flex-col tw-sticky tw-top-0 tw-bg-white tw-z-50 tw-border-none md:tw-border-b"
   >
     <div
@@ -12,12 +12,14 @@
           <p class="tw-font-normal tw-text-[13px] tw-text-white">RU</p>
         </div>
         <div class="tw-flex tw-items-center tw-gap-[8px]">
-          <img
-            width="24px"
-            height="14.18px"
-            src="/public/imgs/logo.png"
-            alt=""
-          />
+          <NuxtLink to="/oferta">
+            <img
+              width="24px"
+              height="14.18px"
+              src="/public/imgs/logo.png"
+              alt=""
+          /></NuxtLink>
+
           <p class="tw-font-medium tw-text-sm tw-text-white">Астра-ломабард</p>
         </div>
         <div class="tw-flex tw-items-center tw-gap-[8px]">
@@ -101,7 +103,7 @@
         </div>
       </div>
     </div>
-    <div
+    <div 
       class="tw-flex tw-max-w-[1300px] tw-w-full tw-flex-col md:tw-flex-row md:tw-justify-between md:tw-items-center tw-py-[20px] tw-px-[16px] lg:tw-px-auto"
     >
       <div
@@ -144,27 +146,142 @@
             "
           />
         </div>
-        <NuxtLink to="/login"
-          ><img
+        <div @click="toLogin">
+          <img
             class="tw-w-[40px] tw-h-[40px] sm:tw-w-[48px] sm:tw-h-[48px] tw-object-cover tw-mx-5 tw-mr-8 sm:tw-m-0"
             src="/public/imgs/user logo.png"
             alt=""
-        /></NuxtLink>
+          />
+        </div>
         <img
+          @click="navigateToFavorite"
           class="tw-w-[40px] tw-h-[40px] sm:tw-w-[48px] sm:tw-h-[48px] tw-object-cover"
           src="/public/imgs/like logo.png"
           alt=""
         />
         <img
+          @click="openKorzina = true"
           class="tw-w-[40px] tw-h-[40px] sm:tw-w-[48px] sm:tw-h-[48px] tw-object-cover"
           src="/public/imgs/korzinka.png"
           alt=""
         />
       </div>
     </div>
+    <v-dialog v-model="openKorzina" fullscreen>
+      <div
+        class="tw-max-w-[600px] tw-w-full tw-h-full tw-bg-white tw-ml-auto tw-px-4 tw-py-[60px] sm:tw-px-[40px] tw-overflow-y-auto"
+      >
+        <div
+          class="top tw-border-b-[1px] tw-border-gray-300 tw-flex tw-justify-between tw-items-center tw-pb-3"
+        >
+          <h1 class="tw-text-[32px] tw-font-semibold">Корзина</h1>
+          <img
+            @click="openKorzina = false"
+            class="tw-w-[32px] tw-h-[32px]"
+            src="/public/imgs/close2.png"
+            alt=""
+          />
+        </div>
+        <div
+          v-if="korzinaData.length === 0"
+          class="tw-flex tw-items-center tw-flex-col tw-my-auto tw-gap-4 tw-mt-20"
+        >
+          <img
+            class="tw-w-[44px] tw-h-[44px]"
+            src="/public/imgs/korzina.png"
+            alt=""
+          />
+          <h1 class="tw-text-[24px] tw-font-semibold">Ваша корзина пуста</h1>
+          <p class="tw-text-[#909090] tw-text-center">
+            Желаете приобрести ювелирные изделия? Посмотрите наши хиты продаж,
+            загляните в товары со скидкой.
+          </p>
+          <button
+            style="border: solid 1px"
+            @click="openKorzina = false"
+            class="tw-text-[#FF8A00] tw-border-[#FF8A00] tw-rounded-[8px] tw-h-[48px] tw-w-full tw-py-2"
+          >
+            Вернуться к покупкам
+          </button>
+        </div>
+        <div v-else class="tw-overflow-y-auto tw-w-full tw-h-[460px]">
+          <div
+            class="tw-flex tw-items-center tw-bg-[#F8F8F8] tw-w-full tw-rounded-[14px] tw-gap-[15px] tw-p-[15px] tw-mt-4 tw-relative"
+            v-for="(dataKor, index) in korzinaData"
+            :key="index"
+          >
+            <img
+              class="tw-w-[80px] tw-h-[80px] sm:tw-w-[110px] sm:tw-h-[110px] tw-rounded-[14px]"
+              :src="dataKor.product.imagePath"
+              alt=""
+            />
+            <div class="tw-flex tw-flex-col tw-gap-1">
+              <p class="tw-text-sm">{{ dataKor.product.name }}</p>
+              <div class="tw-flex tw-gap-3">
+                <p class="tw-text-[#34398B] tw-font-semibold tw-text-[16px]">
+                  {{ dataKor.product.basePrice }} ₸
+                </p>
+                <p
+                  class="tw-text-[#909090] tw-text-[14px]"
+                  v-if="dataKor.product.priceWithDiscount"
+                >
+                  {{ dataKor.product.priceWithDiscount }} ₸
+                </p>
+              </div>
+              <p class="tw-text-[#909090]">
+                Вес изделия:
+                <span class="tw-text-black"
+                  >{{ dataKor.product.weight }} г</span
+                >
+              </p>
+              <img
+                @click="removeInKorzino(dataKor.product.id)"
+                class="tw-absolute tw-right-2 tw-top-2 tw-w-[24px] tw-h-[24px]"
+                src="/public/imgs/removeBtn.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+        <div v-if="korzinaData.length > 0">
+          <div
+            class="tw-border-t-[1px] tw-border-[#EBEBEB] tw-mt-5 tw-pt-[20px] tw-flex tw-flex-col tw-gap-3"
+          >
+            <div class="tw-flex tw-justify-between">
+              <p>Скидки</p>
+              <p>{{ prices?.discountPrice }} ₸</p>
+            </div>
+            <div class="tw-flex tw-justify-between">
+              <h1 class="tw-text-[24px] tw-font-semibold">ИТОГО:</h1>
+              <h1 class="tw-text-[24px] tw-font-semibold">
+                {{ prices?.totalPrice }} ₸
+              </h1>
+            </div>
+            <div class="tw-flex tw-gap-4">
+              <button
+                class="tw-bg-[#FF8A00] tw-text-white tw-rounded-[8px] tw-max-w-[260px] tw-w-full tw-h-[48px]"
+              >
+                Оформить заказ
+              </button>
+              <button
+                style="border: solid 1px"
+                class="tw-border-[#FF8A00] tw-text-[#FF8A00] tw-max-w-[260px] tw-w-full tw-h-[48px] tw-rounded-[8px] tw-px-1"
+              >
+                Продолжить покупки
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </v-dialog>
   </header>
   <div
-    v-if="route.path !== '/login' && route.path !== '/register'"
+    v-if="
+      route.path !== '/login' &&
+      route.path !== '/register' &&
+      route.path !== '/user/profile' &&
+      route.path !== '/oferta'
+    "
     :class="[
       openMenu
         ? 'tw-fixed tw-left-0 tw-top-0 tw-right-0 tw-bottom-[-20px] tw-z-50 tw-bg-white tw-flex tw-flex-col tw-overflow-auto tw-px-4 tw-py-8'
@@ -245,6 +362,9 @@ const showMenu = ref(false);
 const openMenu = ref(false);
 const searchTerm = ref("");
 const router = useRouter();
+const openKorzina = ref(false);
+
+import { useKorzinaData, usePrices, getdata } from "~/composable/useKorzina";
 
 interface Category {
   id: string;
@@ -255,6 +375,29 @@ interface Category {
 }
 interface CategoryResponse {
   data: Category[];
+}
+interface Korzinka {
+  id: string;
+  name: string;
+  localizedName: string;
+  isLatest: boolean;
+  article: number;
+  inStock: boolean;
+  imagePath: string;
+  basePrice: number;
+  priceWithDiscount: number;
+  individualPrice: number;
+  discountPercent: number;
+  weight: number;
+}
+interface CartItem {
+  product: Korzinka;
+}
+
+interface CartResponse {
+  items: CartItem[];
+  totalPrice: number;
+  discountPrice: number;
 }
 
 const items = ref<Category[]>([]);
@@ -268,6 +411,32 @@ function toggle() {
 function toggleMenu2() {
   openMenu.value = true;
 }
+
+function toLogin() {
+  const token = useCookie("token");
+  console.log(token);
+  if (token.value) {
+    router.push("/user/profile");
+  } else {
+    router.push("/login");
+  }
+}
+
+function navigateToFavorite() {
+  const token = useCookie("token");
+
+  if (!token.value) {
+    router.push({
+      path: "/login",
+    });
+  } else {
+    router.push({
+      path: "/user/profile",
+      query: { selectedSection: "wishes" },
+    });
+  }
+}
+
 onMounted(async () => {
   const response = await axios.post<CategoryResponse>(
     "https://api.store.astra-lombard.kz/api/v1/categories/search",
@@ -285,4 +454,24 @@ onMounted(async () => {
   items.value = response.data.data.slice(0, 8);
   bottomItems.value = response.data.data.slice(8, 9);
 });
+
+const korzinaData = useKorzinaData();
+const prices = usePrices();
+
+onMounted(() => {
+  getdata();
+});
+async function removeInKorzino(id: string) {
+  try {
+    const token = useCookie("token");
+    await axios.delete(`https://api.store.astra-lombard.kz/api/v1/cart/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token.value}`,
+      },
+    });
+    getdata();
+  } catch (error) {
+    console.log(error);
+  }
+}
 </script>
