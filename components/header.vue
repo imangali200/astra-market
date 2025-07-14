@@ -1,6 +1,5 @@
-<template class="tw-flex tw-flex-col tw-justify-center tw-items-center">
-  <header
-    v-if="route.path !== '/oferta'"
+<template  class="tw-flex tw-flex-col tw-justify-center tw-items-center">
+  <header v-if="route.path !== '/oferta'"
     class="tw-flex tw-items-center tw-flex-col tw-sticky tw-top-0 tw-bg-white tw-z-50 tw-border-none md:tw-border-b"
   >
     <div
@@ -13,18 +12,21 @@
           <p class="tw-font-normal tw-text-[13px] tw-text-white">RU</p>
         </div>
         <div class="tw-flex tw-items-center tw-gap-[8px]">
-          <NuxtLink to="/oferta">
+
             <img
+              @click="toOferta"
               width="24px"
               height="14.18px"
               src="/public/imgs/logo.png"
               alt=""
-          /></NuxtLink>
+              >
+    
 
           <p class="tw-font-medium tw-text-sm tw-text-white">Астра-ломабард</p>
         </div>
         <div class="tw-flex tw-items-center tw-gap-[8px]">
           <img
+
             width="20px"
             height="20px"
             src="/public/imgs/phone logo.png"
@@ -66,6 +68,7 @@
         >
         <div class="tw-flex tw-items-center tw-gap-[8px]">
           <img
+          @click="toOferta"
             width="24px"
             height="14.18px"
             src="/public/imgs/logo.png"
@@ -104,7 +107,7 @@
         </div>
       </div>
     </div>
-    <div
+    <div 
       class="tw-flex tw-max-w-[1300px] tw-w-full tw-flex-col md:tw-flex-row md:tw-justify-between md:tw-items-center tw-py-[20px] tw-px-[16px] lg:tw-px-auto"
     >
       <div
@@ -474,5 +477,11 @@ async function removeInKorzino(id: string) {
   } catch (error) {
     console.log(error);
   }
+}
+function toOferta(){
+  router.push({
+    path:"/oferta",
+    query:{mobile:'true'}
+  })
 }
 </script>
