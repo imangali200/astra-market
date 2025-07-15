@@ -2,8 +2,8 @@
 definePageMeta({
   path: "/products/detail",
 });
-import { useToast } from "vue-toastification";
-const toast = useToast();
+// import { useToast } from "vue-toastification";
+// const toast = useToast();
 import { getdata, useKorzinaData } from "~/composable/useKorzina";
 import axios from "axios";
 import ToasterContent from "~/components/ToasterContent.vue";
@@ -93,12 +93,12 @@ async function tokorzina(id) {
     const korzinaStore = useKorzinaStore();
     korzinaStore.setLastAddedId(id);
 
-    toast.success(ToasterContent, {
-      dangerouslySetInnerHTML: true,
-    });
+    // toast.success(ToasterContent, {
+    //   dangerouslySetInnerHTML: true,
+    // });
     await getdata();
   } catch (error) {
-    toast.error("товар уже добавлен в корзину", {});
+    // toast.error("товар уже добавлен в корзину", {});
   }
 }
 onMounted(() => {
