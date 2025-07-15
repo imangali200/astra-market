@@ -322,8 +322,8 @@ const filterdata = ref<filter[]>([]);
 const showMobileFilter = ref(false);
 const token = useCookie("token");
 const router = useRouter();
-import { useToast } from "vue-toastification";
-const toast = useToast();
+// import { useToast } from "vue-toastification";
+// const toast = useToast();
 import { useKorzinaStore } from "~/store/korzinaStore";
 import ToasterContent from "~/components/ToasterContent.vue";
 
@@ -586,12 +586,12 @@ async function tokorzina(id: string) {
     const korzinaStore = useKorzinaStore();
     korzinaStore.setLastAddedId(id);
 
-    toast.success(ToasterContent, {});
+    // toast.success(ToasterContent, {});
     await getdata();
 
     await getdata();
   } catch (error) {
-    toast.error("товар уже добавлен в корзину", {});
+    // toast.error("товар уже добавлен в корзину", {});
   }
 }
 onMounted(() => {
