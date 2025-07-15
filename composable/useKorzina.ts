@@ -1,7 +1,29 @@
-import axios from "axios";
 
-export const useKorzinaData = () => useState("korzina", () => []);
-export const usePrices = () => useState("prices", () => ({}));
+interface Product {
+  id: string;
+  name: string;
+  imagePath: string;
+  basePrice: number;
+  priceWithDiscount?: number;
+  weight: number;
+}
+
+interface CartItem {
+  product: Product;
+}
+
+interface CartResponse {
+  items: CartItem[];
+  totalPrice: number;
+  discountPrice: number;
+}
+
+export const useKorzinaData = () => useState<CartItem[]>("korzina", () => []);
+export const usePrices = () =>
+  useState<{ totalPrice: number; discountPrice: number }>("prices", () => ({
+    totalPrice: 0,
+    discountPrice: 0,
+  }));
 
 export async function getdata() {
   const token = useCookie("token");
@@ -9,7 +31,7 @@ export async function getdata() {
   const prices = usePrices();
 
   try {
-    const response = await axios.get(
+    const res: CartResponse = await $fetch(
       "https://api.store.astra-lombard.kz/api/v1/cart",
       {
         headers: {
@@ -18,9 +40,12 @@ export async function getdata() {
       }
     );
 
-    korzinaData.value = response.data.items;
-    prices.value = response.data;
-  } catch (error) {
-    console.error("Failed to load cart", error);
+    korzinaData.value = res.items;
+    prices.value = {
+      totalPrice: res.totalPrice,
+      discountPrice: res.discountPrice,
+    };
+  } catch (err) {
+    console.error("getdata error:", err);
   }
 }

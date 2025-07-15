@@ -2,13 +2,15 @@
 definePageMeta({
   path: "/products/detail",
 });
-// import { useToast } from "vue-toastification";
-// const toast = useToast()
-import { getdata } from "~/composable/useKorzina";
+import { useToast } from "vue-toastification";
+const toast = useToast();
+import { getdata, useKorzinaData } from "~/composable/useKorzina";
 import axios from "axios";
+import ToasterContent from "~/components/ToasterContent.vue";
 const route = useRoute();
 const router = useRouter();
 const token = useCookie("token");
+import { useKorzinaStore } from "~/store/korzinaStore";
 
 const productId = ref(route.query.categoryId);
 watch(
@@ -88,17 +90,17 @@ async function tokorzina(id) {
         },
       }
     );
-    // toast.success('товар успешно добавлен в корзину',{
-    // })
-    
-    
+    const korzinaStore = useKorzinaStore();
+    korzinaStore.setLastAddedId(id);
+
+    toast.success(ToasterContent, {
+      dangerouslySetInnerHTML: true,
+    });
     await getdata();
   } catch (error) {
-    // toast.error('товар уже добавлен в корзину',{
-    // })
+    toast.error("товар уже добавлен в корзину", {});
   }
 }
-
 onMounted(() => {
   findwithid();
 });
@@ -260,3 +262,8 @@ onMounted(() => {
     ></productSlider>
   </div>
 </template>
+<style>
+.Vue-Toastification__toast--success {
+  background-color: white;
+}
+</style>

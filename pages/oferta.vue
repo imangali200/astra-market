@@ -2,8 +2,8 @@
   <div
     class="tw-bg-white tw-relative tw-text-black tw-font-serif tw-text-[14px] tw-leading-relaxed tw-px-[50px] tw-py-[60px] tw-max-w-[794px] tw-mx-auto tw-shadow tw-border tw-border-gray-300"
   >
-  <NuxtLink to="/"><p v-if="isMobile" class="tw-absolute tw-top-3 tw-left-10">⬅</p></NuxtLink>
-    
+    <p @click="postMessage" v-if="isMobile" class="tw-absolute tw-top-3 tw-left-10">⬅</p>
+
     <!-- Title -->
     <h1 class="tw-text-center tw-font-bold tw-text-[16pt] tw-mb-6">
       ЖАРИЯ ОФЕРТА ШАРТЫ
@@ -149,5 +149,8 @@ definePageMeta({
   layout: "empty",
 });
 const route = useRoute();
-const isMobile = computed(() => route.query.mobile === 'true');
+const isMobile = computed(() => route.query.mobile === "true");
+function postMessage(){
+  goToBack.postMessage('success')
+}
 </script>

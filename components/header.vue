@@ -380,29 +380,6 @@ interface Category {
 interface CategoryResponse {
   data: Category[];
 }
-interface Korzinka {
-  id: string;
-  name: string;
-  localizedName: string;
-  isLatest: boolean;
-  article: number;
-  inStock: boolean;
-  imagePath: string;
-  basePrice: number;
-  priceWithDiscount: number;
-  individualPrice: number;
-  discountPercent: number;
-  weight: number;
-}
-interface CartItem {
-  product: Korzinka;
-}
-
-interface CartResponse {
-  items: CartItem[];
-  totalPrice: number;
-  discountPrice: number;
-}
 
 const items = ref<Category[]>([]);
 const bottomItems = ref<Category[]>([]);
@@ -461,6 +438,8 @@ onMounted(async () => {
 
 const korzinaData = useKorzinaData();
 const prices = usePrices();
+console.log(korzinaData.value)
+
 
 onMounted(() => {
   getdata();

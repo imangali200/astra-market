@@ -129,8 +129,10 @@ import { getdata } from "~/composable/useKorzina";
 const token = useCookie("token");
 const router = useRouter();
 import axios from "axios";
-// import { useToast } from "vue-toastification";
-// const toast = useToast();
+import { useToast } from "vue-toastification";
+const toast = useToast();
+import { useKorzinaStore } from "~/store/korzinaStore";
+import ToasterContent from "~/components/ToasterContent.vue";
 
 interface Product {
   id: string;
@@ -163,13 +165,11 @@ interface Product {
   createdOn: string;
   updatedOn: string;
 }
-
 const props = defineProps<{
-  title: String;
+  title?: String;
   products: Product[];
   bgClass: String;
 }>();
-
 const screenWidth = ref<number>(0);
 onMounted(() => {
   screenWidth.value = window.innerWidth;
@@ -223,10 +223,20 @@ async function tokorzina(id: string) {
         },
       }
     );
-    // toast.success("товар успешно добавлен в корзину", {});
+    const korzinaStore = useKorzinaStore();
+    korzinaStore.setLastAddedId(id);
+
+    toast.success(ToasterContent, {});
+    await getdata();
     getdata();
   } catch (error) {
-    // toast.error("товар уже добавлен в корзину", {});
+    toast.error("товар уже добавлен в корзину", {});
   }
 }
 </script>
+
+<style>
+.Vue-Toastification__toast--success {
+  background-color: white;
+}
+</style>

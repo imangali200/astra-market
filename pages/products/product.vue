@@ -322,8 +322,11 @@ const filterdata = ref<filter[]>([]);
 const showMobileFilter = ref(false);
 const token = useCookie("token");
 const router = useRouter();
-// import { useToast } from "vue-toastification";
-// const toast = useToast();
+import { useToast } from "vue-toastification";
+const toast = useToast();
+import { useKorzinaStore } from "~/store/korzinaStore";
+import ToasterContent from "~/components/ToasterContent.vue";
+
 
 interface Category {
   id: string;
@@ -580,13 +583,17 @@ async function tokorzina(id: string) {
         },
       }
     );
-    // toast.success("товар успешно добавлен в корзину", {});
+    const korzinaStore = useKorzinaStore();
+    korzinaStore.setLastAddedId(id);
+
+    toast.success(ToasterContent, {});
+    await getdata();
+
     await getdata();
   } catch (error) {
-    // toast.error("товар уже добавлен в корзину", {});
+    toast.error("товар уже добавлен в корзину", {});
   }
 }
-
 onMounted(() => {
   if (route.query.categoryId) {
     withCategoies(route.query.categoryId as string);
@@ -616,3 +623,9 @@ watch(priceRange, () => {
   applyFilters();
 });
 </script>
+
+<style>
+.Vue-Toastification__toast--success {
+  background-color: white;
+}
+</style>

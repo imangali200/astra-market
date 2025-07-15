@@ -54,8 +54,8 @@ import axios from "axios";
 const Phonenumber = ref("");
 const password = ref("");
 const router = useRouter();
-// import { useToast,POSITION } from "vue-toastification";
-// const toast = useToast()
+import { useToast,POSITION } from "vue-toastification";
+const toast = useToast()
 
 async function logIn() {
   try {
@@ -71,9 +71,9 @@ async function logIn() {
         },
       }
     );
-    // toast.success('Вход прошел успешно!', {
-    //   position: 'top-center' as POSITION,
-    // })
+    toast.success('Вход прошел успешно!', {
+      position: 'top-center' as POSITION,
+    })
     if (log.data.token) {
       const token = useCookie("token");
       token.value = log.data.token;
@@ -84,9 +84,9 @@ async function logIn() {
     
   } catch (error) {
     console.log(error);
-    // toast.error('Неверный номер или пароль.!', {
-    //   position: 'top-center' as POSITION,
-    // })
+    toast.error('Неверный номер или пароль.!', {
+      position: 'top-center' as POSITION,
+    })
   }
 }
 </script>
